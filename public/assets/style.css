@@ -1,6 +1,16 @@
+body{
+    background-image: url('./stock-video-action-news-background-loop-1-169868.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;}
 #mainHeader{
     text-align: center;
+    background-color: #ffffff96;
 }
 .nav-link{
     width: 100%;
+}
+.display{
+    background-color: #ffffff96;
 }
