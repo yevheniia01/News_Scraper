@@ -6,8 +6,18 @@ $.getJSON("/articles", function (data) {
     for (var i = 0; i < data.length; i++) {
         if (i === 5) { break; }
         console.log(data[0])
+        var thisId = data[i]._id;
         // Display the apropos information on the page
-
+        $.ajax({
+            method:"GET",
+            url: "/articles/" + thisId
+        })
+        .then(function(data){
+           
+            console.log(data, "input data");
+           
+            
+        })
         var newDiv = $('<div id=' + i + '>')
         $(newDiv).append("<h1 id='fTitle'>"+data[i].title + "</h1>");
         $(newDiv).append("<p class='fSummary' data-id ='"+data[i]._id+"'>"+data[i].summary +"'" +'</p>');
@@ -16,11 +26,12 @@ $.getJSON("/articles", function (data) {
 
         //$(thisId).append("<textarea id='bodyinput' name='body'></textarea>")
         
-        var thisId = (data[0]._id);
+       
         
         console.log(thisId)
     }
 });
+
 
 
 
@@ -52,22 +63,25 @@ $(document).on("click", '.savenote', function () {
             // Value taken from note textarea
             body: thisbody
         }
-     }).then(function (data) {
+     }).then(function(err, data) {
          
             // Log the response
             //console.log(body)
-            console.log(data.body)
+            console.log(data.body, "body")
             console.log(data, "DATA");
             console.log(thisbody, "this body")
             //var place = $(this).parent()
             console.log($(this), "ffffffffffffffffff")
+            $(place).append("<h4>"+thisbody+"</h4>")
+            //$('.comment').text(data.note[0].body)
+            console.log(data.note[0].body)
             
             
             // Empty the notes section
             //$("#notes").empty();
             
         });
-        $.ajax({
+        /*$.ajax({
             method:"GET",
             url: "/articles/" + thisId
             
@@ -75,11 +89,9 @@ $(document).on("click", '.savenote', function () {
         .then(function(data){
            
             console.log(data, "input data");
-            $(place).append("<h4>"+data.note[0].body+"</h4>")
-                //$('.comment').text(data.note[0].body)
-                console.log(data.note[0].body)
+           
             
-        })
+        })*/
 
     // Also, remove the values entered in the input and textarea for note entry
     //$("#titleinput").val("");
